@@ -48,13 +48,13 @@ public class JwtService implements UserDetailsService {
         String newGeneratedToken = jwtUtil.generateToken(userDetails);
 
         // Get the user from the repository and return a response with the token
-        Users users = usersRepository.findById(userName).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        Users users = usersRepository.findByUserName(userName);
         return new JwtResponse(users, newGeneratedToken);
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Users users = usersRepository.findById(username).orElseThrow(() -> new UsernameNotFoundException("User Name is not valid"));
+        Users users = usersRepository.findByUserName(username);
         return new User(users.getUserName(), users.getPassword(), getAuthorities(users));
     }
 

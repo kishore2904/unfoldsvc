@@ -1,22 +1,26 @@
 package com.unfold.unfoldfit.model.entity;
 
 import javax.persistence.*;
-
 import java.util.Date;
 import java.util.Set;
 
 @Entity
 public class Users {
+
     @Id
-    private String userName;
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Automatically generates unique IDs
+    private Long user_id; // Changed to a Long type for primary key
+
+    private String userName; // User-defined unique field
     private String firstName;
     private String lastName;
     private String emailAddress;
     private String password;
     private String phoneNumber;
-    private String Address;
+    private String address; // Corrected to lowercase for convention
     private Date create_ts;
     private Date update_ts;
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "USER_ROLE",
             joinColumns = {
@@ -27,6 +31,14 @@ public class Users {
             }
     )
     private Set<Role> roles;
+
+    public Long getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Long user_id) {
+        this.user_id = user_id;
+    }
 
     public String getUserName() {
         return userName;
@@ -77,11 +89,11 @@ public class Users {
     }
 
     public String getAddress() {
-        return Address;
+        return address;
     }
 
     public void setAddress(String address) {
-        Address = address;
+        this.address = address;
     }
 
     public Date getCreate_ts() {

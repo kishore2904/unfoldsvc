@@ -8,38 +8,42 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product,Integer> {
+public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     String FIND_PRODUCT_BY_CATEGORY_AND_PRODUCT_ID = """
-            SELECT PRODUCTDETAILS FROM Product PRODUCTDETAILS WHERE
-            PRODUCTDETAILS.productId = :productId AND PRODUCTDETAILS.categoryId = :categoryId
-            """;
+        SELECT PRODUCTDETAILS FROM Product PRODUCTDETAILS WHERE
+        PRODUCTDETAILS.productId = :productId AND PRODUCTDETAILS.categoryId = :categoryId
+        """;
 
     String UPDATE_PRODUCT_BY_CATEGORY_AND_PRODUCT_ID = """
-            UPDATE Product prod SET prod.productName = :productName,
-            prod.productDescription = :productDescription,
-            prod.price = :price, prod.stockQuantity = :stockQuantity,
-            prod.imageUrl = :imageUrl WHERE prod.categoryId = :categoryId
-            AND prod.productId = productId
-            """;
+        UPDATE Product prod SET prod.productName = :productName,
+        prod.productDescription = :productDescription,
+        prod.price = :price, prod.stockQuantity = :stockQuantity,
+        prod.imageUrl = :imageUrl WHERE prod.categoryId = :categoryId
+        AND prod.productId = :productId
+        """;
+
     String DELETE_PRODUCT_BY_CATEGORY_AND_PRODUCT_ID = """
-            DELETE FROM Product prod where prod.categoryId = :categoryId
-            AND prod.productId = productId
-            """;
+        DELETE FROM Product prod WHERE prod.categoryId = :categoryId
+        AND prod.productId = :productId
+        """;
 
     @Query(value = FIND_PRODUCT_BY_CATEGORY_AND_PRODUCT_ID)
-    Product findProductByCategoryIdAndProductId(@Param("categoryId")Integer categoryId,
+    Product findProductByCategoryIdAndProductId(@Param("categoryId") Integer categoryId,
                                                 @Param("productId") Integer productId);
 
     @Modifying
     @Query(value = UPDATE_PRODUCT_BY_CATEGORY_AND_PRODUCT_ID)
-    void updateProductBasedOnCategoryAndProductId(@Param("categoryId")Integer categoryId,
-     @Param("productId") Integer productId,@Param("productName") String productName,
-     @Param("productDescription") String productDescription, @Param("price") Double price,
-     @Param("stockQuantity") Integer stockQuantity, @Param("imageUrl") String imageUrl);
+    void updateProductBasedOnCategoryAndProductId(@Param("categoryId") Integer categoryId,
+                                                  @Param("productId") Integer productId,
+                                                  @Param("productName") String productName,
+                                                  @Param("productDescription") String productDescription,
+                                                  @Param("price") Double price,
+                                                  @Param("stockQuantity") Integer stockQuantity,
+                                                  @Param("imageUrl") String imageUrl);
 
     @Modifying
     @Query(value = DELETE_PRODUCT_BY_CATEGORY_AND_PRODUCT_ID)
-    void deleteProductByCategoryAndProductId(@Param("categoryId")Integer categoryId,
-       @Param("productId") Integer productId);
+    void deleteProductByCategoryAndProductId(@Param("categoryId") Integer categoryId,
+                                             @Param("productId") Integer productId);
 }

@@ -18,10 +18,10 @@ public class UserController {
         this.usersService = usersService;
     }
 
-    @PostConstruct
-    public void initRolesAndUser(){
-        usersService.initRolesAndUser();
-    }
+//    @PostConstruct
+//    public void initRolesAndUser(){
+//        usersService.initRolesAndUser();
+//    }
     @PostMapping(Constants.REGISTER_NEW_USER)
     public Users registerNewUser(@RequestBody Users users){
         return usersService.requestNewUser(users);
