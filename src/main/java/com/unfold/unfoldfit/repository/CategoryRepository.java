@@ -2,6 +2,7 @@ package com.unfold.unfoldfit.repository;
 
 import com.unfold.unfoldfit.model.entity.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -16,8 +17,10 @@ public interface CategoryRepository extends JpaRepository<Category,Integer> {
      WHERE CATEGORY.categoryId = :categoryId 
     """;
 
+
     List<Category> findAll();
 
-    @Query(value = "FIND_CATEGORY_WITH_PRODUCTS")
+    @Query(value = FIND_CATEGORY_WITH_PRODUCTS)
     List<Category> findCategoryAndProductsByCategoryId(@Param("categoryId") Integer categoryId);
+
 }

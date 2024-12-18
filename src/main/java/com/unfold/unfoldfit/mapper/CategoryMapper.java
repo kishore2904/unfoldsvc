@@ -53,4 +53,9 @@ public interface CategoryMapper {
         }
         return  productDtos;
     }
+
+    @Mapping(source = "categoryId", target = "categoryId")
+    @Mapping(source = "categoryName",target = "categoryName")
+    @Mapping(source = "parentCategoryId", target = "parentCategoryId")
+    Category convertToCategory(CategoryDto categoryDto);
 }
