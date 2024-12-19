@@ -1,5 +1,6 @@
 package com.unfold.unfoldfit.service.impl;
 
+import com.unfold.unfoldfit.exception.InvalidInputException;
 import com.unfold.unfoldfit.model.entity.Role;
 import com.unfold.unfoldfit.model.entity.Users;
 import com.unfold.unfoldfit.repository.RoleRepository;
@@ -27,6 +28,9 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public Users requestNewUser(Users users) {
+        if (usersRepository.findByUserName(users.getUserName()) != null) {
+            throw new InvalidInputException("User Name Already present");
+        }
         Role role = roleRepository.findById("Admin").get();
         Set<Role> roleSet = new HashSet<>();
         roleSet.add(role);
