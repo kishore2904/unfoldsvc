@@ -32,7 +32,7 @@ public class UsersServiceImpl implements UsersService {
         if (usersRepository.findByUserName(users.getUserName()) != null) {
             throw new InvalidInputException(ErrorMessage.USER_NAME_ALREADY_EXIST);
         }
-        Role role = roleRepository.findById("Admin").get();
+        Role role = roleRepository.findById("User").get();
         Set<Role> roleSet = new HashSet<>();
         roleSet.add(role);
         users.setRoles(roleSet);
