@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://autorack.proxy.rlwy.net:43325/railway?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-    username: root
-    password: SCTOmFotHRjspZoyMPLEhXKRXDhOTauR
+    url: jdbc:mysql://68.178.236.157:3306/unfoldfit?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: unfoldfit
+    password: unfoldfit@123
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
