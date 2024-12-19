@@ -27,7 +27,7 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public Users requestNewUser(Users users) {
-        Role role = roleRepository.findById("User").get();
+        Role role = roleRepository.findById("Admin").get();
         Set<Role> roleSet = new HashSet<>();
         roleSet.add(role);
         users.setRoles(roleSet);

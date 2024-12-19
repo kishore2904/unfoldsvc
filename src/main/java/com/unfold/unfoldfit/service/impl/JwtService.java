@@ -38,7 +38,7 @@ public class JwtService implements UserDetailsService {
         this.authenticationManager = authenticationManager;
     }
 
-    public JwtResponse createJwtToken(JwtRequest jwtRequest) throws Exception {
+    public JwtResponse createJwtToken(JwtRequest jwtRequest) throws UsernameNotFoundException {
         String userName = jwtRequest.getUserName();
         String userPassword = jwtRequest.getUserPassword();
         authenticate(userName, userPassword);  // Authenticate the user
@@ -49,13 +49,21 @@ public class JwtService implements UserDetailsService {
 
         // Get the user from the repository and return a response with the token
         Users users = usersRepository.findByUserName(userName);
-        return new JwtResponse(users, newGeneratedToken);
+        if (users ==null){
+            throw new UsernameNotFoundException("User not found");
+        }else {
+            return new JwtResponse(users, newGeneratedToken);
+        }
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
         Users users = usersRepository.findByUserName(username);
-        return new User(users.getUserName(), users.getPassword(), getAuthorities(users));
+        if(users==null){
+            throw new UsernameNotFoundException("User not found with username: "+ username);
+        }else {
+            return new User(users.getUserName(), users.getPassword(), getAuthorities(users));
+        }
     }
 
     private Set<SimpleGrantedAuthority> getAuthorities(Users users) {
@@ -66,13 +74,13 @@ public class JwtService implements UserDetailsService {
         return authorities;
     }
 
-    private void authenticate(String userName, String userPassword) throws Exception {
+    private void authenticate(String userName, String userPassword) throws UsernameNotFoundException {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userName, userPassword));
         } catch (DisabledException e) {
-            throw new Exception("User is disabled", e);
+            throw new UsernameNotFoundException("User is disabled", e);
         } catch (BadCredentialsException e) {
-            throw new Exception("Bad Credentials", e);
+            throw new UsernameNotFoundException("Bad Credentials", e);
         }
     }
 }
