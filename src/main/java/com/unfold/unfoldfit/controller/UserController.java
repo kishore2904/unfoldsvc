@@ -3,7 +3,9 @@ package com.unfold.unfoldfit.controller;
 import com.unfold.unfoldfit.model.entity.Users;
 import com.unfold.unfoldfit.service.UsersService;
 import com.unfold.unfoldfit.utils.Constants;
+
 import javax.annotation.PostConstruct;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -18,24 +20,25 @@ public class UserController {
         this.usersService = usersService;
     }
 
-//    @PostConstruct
+    //    @PostConstruct
 //    public void initRolesAndUser(){
 //        usersService.initRolesAndUser();
 //    }
+    @CrossOrigin(origins = "*")
     @PostMapping(Constants.REGISTER_NEW_USER)
-    public Users registerNewUser(@RequestBody Users users){
+    public Users registerNewUser(@RequestBody Users users) {
         return usersService.requestNewUser(users);
     }
 
     @GetMapping("/forAdmin")
     @PreAuthorize("hasRole('Admin')")
-    public String forAdmin(){
+    public String forAdmin() {
         return "For admin";
     }
 
     @GetMapping("/forUser")
     @PreAuthorize("hasRole('User')")
-    public String forUser(){
+    public String forUser() {
         return "For User";
     }
 }

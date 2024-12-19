@@ -6,6 +6,7 @@ import com.unfold.unfoldfit.model.entity.Users;
 import com.unfold.unfoldfit.repository.RoleRepository;
 import com.unfold.unfoldfit.repository.UsersRepository;
 import com.unfold.unfoldfit.service.UsersService;
+import com.unfold.unfoldfit.utils.ErrorMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -29,7 +30,7 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public Users requestNewUser(Users users) {
         if (usersRepository.findByUserName(users.getUserName()) != null) {
-            throw new InvalidInputException("User Name Already present");
+            throw new InvalidInputException(ErrorMessage.USER_NAME_ALREADY_EXIST);
         }
         Role role = roleRepository.findById("Admin").get();
         Set<Role> roleSet = new HashSet<>();
