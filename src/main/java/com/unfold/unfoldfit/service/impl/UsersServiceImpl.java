@@ -29,7 +29,7 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public Users requestNewUser(Users users) {
-        if (usersRepository.findByUserName(users.getUserName()) != null) {
+        if (usersRepository.findByEmailAddress(users.getEmailAddress()) != null) {
             throw new InvalidInputException(ErrorMessage.USER_NAME_ALREADY_EXIST);
         }
         Role role = roleRepository.findById("User").get();

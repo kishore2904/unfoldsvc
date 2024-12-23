@@ -8,7 +8,7 @@ public class ErrorMessage {
     public static final String USER_NAME_ALREADY_EXIST = "USER_NAME_ALREADY_EXIST";
 
     public enum ErrorCodeConstants {
-        DATA_NOT_FOUND("A001", "Data Not Found", HttpStatus.NOT_FOUND),
+        DATA_NOT_FOUND("A001", "UserName Not Found", HttpStatus.NOT_FOUND),
         USER_NAME_ALREADY_EXIST("A002","User Name Already Exist", HttpStatus.BAD_REQUEST),
         INVALID_INPUT("A003", "Invalid Input", HttpStatus.BAD_REQUEST);
 

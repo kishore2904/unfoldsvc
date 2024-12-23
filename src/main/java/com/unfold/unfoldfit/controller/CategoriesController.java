@@ -25,12 +25,12 @@ public class CategoriesController {
         return ResponseEntity.ok(categoryServiceImpl.findAllCategories());
     }
 
-    @GetMapping(value ="/{id}")
-    public ResponseEntity<List<CategoryDto>> findCategoryAndProductsByCategoryId(@PathVariable Integer categoryId){
-        return ResponseEntity.ok(categoryServiceImpl.findCategoryAndProductsByCategoryId(categoryId));
+    @GetMapping("/{id}")
+    public ResponseEntity<List<CategoryDto>> findCategoryAndProductsByCategoryId(@PathVariable Integer id){
+        return ResponseEntity.ok(categoryServiceImpl.findCategoryAndProductsByCategoryId(id));
     }
 
-    @PostMapping(value = "/categories")
+    @PostMapping("/categories")
     ResponseEntity<Void> saveCategories(@RequestBody CategoryDto categoryDto){
         categoryServiceImpl.createCategories(categoryDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();

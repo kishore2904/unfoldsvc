@@ -1,9 +1,11 @@
 package com.unfold.unfoldfit.service.impl;
 
+import com.unfold.unfoldfit.exception.NotFoundException;
 import com.unfold.unfoldfit.model.entity.JwtRequest;
 import com.unfold.unfoldfit.model.entity.JwtResponse;
 import com.unfold.unfoldfit.model.entity.Users;
 import com.unfold.unfoldfit.repository.UsersRepository;
+import com.unfold.unfoldfit.utils.ErrorMessage;
 import com.unfold.unfoldfit.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -48,9 +50,9 @@ public class JwtService implements UserDetailsService {
         String newGeneratedToken = jwtUtil.generateToken(userDetails);
 
         // Get the user from the repository and return a response with the token
-        Users users = usersRepository.findByUserName(userName);
+        Users users = usersRepository.findByEmailAddress(userName);
         if (users ==null){
-            throw new UsernameNotFoundException("User not found");
+            throw new NotFoundException(ErrorMessage.DATA_NOT_FOUND);
         }else {
             return new JwtResponse(users, newGeneratedToken);
         }
@@ -58,9 +60,9 @@ public class JwtService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
-        Users users = usersRepository.findByUserName(username);
+        Users users = usersRepository.findByEmailAddress(username);
         if(users==null){
-            throw new UsernameNotFoundException("User not found with username: "+ username);
+            throw new NotFoundException(ErrorMessage.DATA_NOT_FOUND);
         }else {
             return new User(users.getUserName(), users.getPassword(), getAuthorities(users));
         }
