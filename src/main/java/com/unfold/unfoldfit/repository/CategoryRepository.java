@@ -16,9 +16,6 @@ public interface CategoryRepository extends JpaRepository<Category,Integer> {
      WHERE CATEGORY.categoryId = :categoryId 
     """;
 
-
-    List<Category> findAll();
-
     @Query(value = FIND_CATEGORY_WITH_PRODUCTS)
     List<Category> findCategoryAndProductsByCategoryId(@Param("categoryId") Integer categoryId);
 
