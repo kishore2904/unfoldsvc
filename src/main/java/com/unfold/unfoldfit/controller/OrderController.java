@@ -1,6 +1,5 @@
 package com.unfold.unfoldfit.controller;
 
-import com.unfold.unfoldfit.model.dto.CategoryDto;
 import com.unfold.unfoldfit.model.dto.OrderDto;
 import com.unfold.unfoldfit.service.impl.OrderServiceImpl;
 import org.springframework.http.HttpStatus;

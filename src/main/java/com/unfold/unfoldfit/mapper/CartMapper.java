@@ -1,9 +1,7 @@
 package com.unfold.unfoldfit.mapper;
 
 import com.unfold.unfoldfit.model.dto.CartDto;
-import com.unfold.unfoldfit.model.dto.ProductDto;
 import com.unfold.unfoldfit.model.entity.Cart;
-import com.unfold.unfoldfit.model.entity.Product;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
@@ -30,5 +28,5 @@ public interface CartMapper {
     @Mapping(source = "createdAt", target = "createdAt")
     CartDto convertToCartDto(Cart cart);
 
-    List<CartDto> convertToCartDto(List<Cart> carts)
+    List<CartDto> convertToCartDto(List<Cart> carts);
 }
