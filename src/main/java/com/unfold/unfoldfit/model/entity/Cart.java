@@ -1,6 +1,7 @@
 package com.unfold.unfoldfit.model.entity;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -8,33 +9,31 @@ import java.util.List;
 public class Cart {
 
     @Id
-    @Column(name = "cart_item_id", nullable = false)
+    @Column(name = "cart_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer cartItemId;
+    private Integer cartId;
 
     @Column(name="user_id",nullable = false,unique = true)
     private Integer userId;
 
-    @Column(name="cart_id",nullable = false)
-    private Integer cartId;
+    @Column(name="product_id",nullable = false)
+    private Integer productId;
 
     @Column(name="quantity",nullable = false)
     private Integer quantity;
 
-    @Column(name="product_id",nullable = false)
-    private Integer productId;
+    @Column(name="variant_id",nullable = false)
+    private Integer variantId;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name="product_id", referencedColumnName = "product_id",
-            insertable = false,updatable = false)
-    private List<Product> products;
+    @Column(nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private LocalDateTime createdAt;
 
-    public Integer getCartItemId() {
-        return cartItemId;
+    public Integer getCartId() {
+        return cartId;
     }
 
-    public void setCartItemId(Integer cartItemId) {
-        this.cartItemId = cartItemId;
+    public void setCartId(Integer cartId) {
+        this.cartId = cartId;
     }
 
     public Integer getUserId() {
@@ -45,12 +44,12 @@ public class Cart {
         this.userId = userId;
     }
 
-    public Integer getCartId() {
-        return cartId;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setCartId(Integer cartId) {
-        this.cartId = cartId;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
     public Integer getQuantity() {
@@ -61,19 +60,19 @@ public class Cart {
         this.quantity = quantity;
     }
 
-    public Integer getProductId() {
-        return productId;
+    public Integer getVariantId() {
+        return variantId;
     }
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setVariantId(Integer variantId) {
+        this.variantId = variantId;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }

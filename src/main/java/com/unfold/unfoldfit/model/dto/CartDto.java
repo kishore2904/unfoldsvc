@@ -1,22 +1,22 @@
 package com.unfold.unfoldfit.model.dto;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 public class CartDto {
 
-    private Integer cartItemId;
-    private Integer userId;
     private Integer cartId;
+    private Integer userId;
     private Integer productId;
     private Integer quantity;
-    private List<ProductDto> productDtoList;
+    private Integer variantId;
+    private LocalDateTime createdAt;
 
-    public Integer getCartItemId() {
-        return cartItemId;
+    public Integer getCartId() {
+        return cartId;
     }
 
-    public void setCartItemId(Integer cartItemId) {
-        this.cartItemId = cartItemId;
+    public void setCartId(Integer cartId) {
+        this.cartId = cartId;
     }
 
     public Integer getUserId() {
@@ -25,14 +25,6 @@ public class CartDto {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
-    }
-
-    public Integer getCartId() {
-        return cartId;
-    }
-
-    public void setCartId(Integer cartId) {
-        this.cartId = cartId;
     }
 
     public Integer getProductId() {
@@ -51,11 +43,19 @@ public class CartDto {
         this.quantity = quantity;
     }
 
-    public List<ProductDto> getProductDtoList() {
-        return productDtoList;
+    public Integer getVariantId() {
+        return variantId;
     }
 
-    public void setProductDtoList(List<ProductDto> productDtoList) {
-        this.productDtoList = productDtoList;
+    public void setVariantId(Integer variantId) {
+        this.variantId = variantId;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }

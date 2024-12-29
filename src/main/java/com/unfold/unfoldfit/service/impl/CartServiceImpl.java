@@ -48,16 +48,15 @@ public class CartServiceImpl {
         }
 
     }
-    public CartDto getAllCartItemsByUserId(Integer userId){
+    public List<CartDto> getAllCartItemsByUserId(Integer userId){
 
-        Cart cart = cartRepository.findByUserId(userId);
-        cartRepository.findAll();
-        return cartMapper.convertToCartDto(cart);
+        List<Cart> carts = cartRepository.findByUserId(userId);
+        return cartMapper.convertToCartDto(carts);
 
     }
-    public void delete(Integer userId){
+    public void delete(Integer cartId){
 
-        cartRepository.deleteByUserId(userId);
+        cartRepository.deleteById(cartId);
 
     }
 }

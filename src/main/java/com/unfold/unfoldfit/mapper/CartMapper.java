@@ -14,38 +14,21 @@ import java.util.List;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface CartMapper {
 
-    @Mapping(source = "cartItemId", target = "cartItemId")
+    @Mapping(source = "variantId", target = "variantId")
     @Mapping(source = "userId", target = "userId")
     @Mapping(source = "cartId", target = "cartId")
     @Mapping(source = "quantity", target = "quantity")
     @Mapping(source = "productId", target = "productId")
+    @Mapping(source = "createdAt", target = "createdAt")
     Cart convertToCart(CartDto cartDto);
 
-    default CartDto convertToCartDto(Cart cart){
-            CartDto cartDto = new CartDto();
-            cartDto.setCartItemId(cart.getCartItemId());
-            cartDto.setCartId(cart.getCartId());
-            cartDto.setQuantity(cart.getQuantity());
-            cartDto.setUserId(cart.getUserId());
-            cartDto.setProductDtoList(convertToProductDtos(cart.getProducts()));
-        return cartDto;
-    }
+    @Mapping(source = "variantId", target = "variantId")
+    @Mapping(source = "userId", target = "userId")
+    @Mapping(source = "cartId", target = "cartId")
+    @Mapping(source = "quantity", target = "quantity")
+    @Mapping(source = "productId", target = "productId")
+    @Mapping(source = "createdAt", target = "createdAt")
+    CartDto convertToCartDto(Cart cart);
 
-    default List<ProductDto> convertToProductDtos(List<Product> productList){
-
-        List<ProductDto> productDtos = new ArrayList<>();
-        for(Product product: productList){
-            ProductDto productDto = new ProductDto();
-            productDto.setCategoryId(product.getCategoryId());
-            productDto.setProductDescription(product.getProductDescription());
-            productDto.setProductName(product.getProductName());
-            productDto.setProductId(product.getProductId());
-            productDto.setImageUrl(product.getImageUrl());
-            productDto.setPrice(product.getPrice());
-            productDto.setStockQuantity(product.getStockQuantity());
-            productDtos.add(productDto);
-
-        }
-        return  productDtos;
-    }
+    List<CartDto> convertToCartDto(List<Cart> carts)
 }

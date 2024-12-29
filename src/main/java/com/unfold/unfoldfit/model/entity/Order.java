@@ -30,7 +30,7 @@ public class Order {
     @Column(nullable = false)
     private String shippingAddress;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime createdAt;
 
     public Integer getOrderId() {
