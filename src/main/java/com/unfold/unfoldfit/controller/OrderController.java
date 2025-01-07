@@ -18,7 +18,7 @@ public class OrderController {
         this.orderServiceImpl = orderServiceImpl;
     }
 
-    @GetMapping(value="/allOrders")
+     @GetMapping(value="/allOrders")
     public ResponseEntity<List<OrderDto>> findAllOrder(){
         return ResponseEntity.ok(orderServiceImpl.findAll());
     }
