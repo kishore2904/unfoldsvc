@@ -64,7 +64,7 @@ public class JwtService implements UserDetailsService {
         if(users==null){
             throw new NotFoundException(ErrorMessage.DATA_NOT_FOUND);
         }else {
-            return new User(users.getUserName(), users.getPassword(), getAuthorities(users));
+            return new User(users.getEmailAddress(), users.getPassword(), getAuthorities(users));
         }
     }
 
