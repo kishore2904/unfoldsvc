@@ -4,8 +4,10 @@ import com.unfold.unfoldfit.mapper.ProductSizeMapper;
 import com.unfold.unfoldfit.model.dto.ProductSizeDto;
 import com.unfold.unfoldfit.model.entity.ProductSize;
 import com.unfold.unfoldfit.repository.ProductSizeRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+@Service
 
 public class ProductSizeServiceImpl {
 

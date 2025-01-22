@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,30 +20,30 @@ public class CategoriesController {
     public CategoriesController(CategoryServiceImpl categoryServiceImpl) {
         this.categoryServiceImpl = categoryServiceImpl;
     }
-
-    @GetMapping(value="/allCategories")
+    @CrossOrigin(origins = "*")
+    @GetMapping("/allCategories")
     public ResponseEntity<List<CategoryDto>> getAllCategories(){
         return ResponseEntity.ok(categoryServiceImpl.findAllCategories());
     }
-
-    @GetMapping("/{id}")
+    @CrossOrigin(origins = "*")
+    @GetMapping("/categories/{id}")
     public ResponseEntity<List<CategoryDto>> findCategoryAndProductsByCategoryId(@PathVariable Integer id){
         return ResponseEntity.ok(categoryServiceImpl.findCategoryAndProductsByCategoryId(id));
     }
-
+    @CrossOrigin(origins = "*")
     @PostMapping("/categories")
     ResponseEntity<Void> saveCategories(@RequestBody CategoryDto categoryDto){
         categoryServiceImpl.createCategories(categoryDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
-
+    @CrossOrigin(origins = "*")
     @PostMapping(value = "/categories/{categoryId}")
     ResponseEntity<Void> updateCategory(@PathVariable Integer categoryId, @RequestBody CategoryDto categoryDto){
 
         categoryServiceImpl.updateCategory(categoryId,categoryDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
-
+    @CrossOrigin(origins = "*")
     @DeleteMapping(value = "/categories/{deleteId}")
     ResponseEntity<Void> deleteCategoryWithProduct(@PathVariable Integer categoryId){
 

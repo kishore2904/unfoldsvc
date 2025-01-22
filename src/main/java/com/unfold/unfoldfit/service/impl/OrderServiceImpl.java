@@ -5,9 +5,12 @@ import com.unfold.unfoldfit.model.dto.OrderDto;
 import com.unfold.unfoldfit.model.entity.Category;
 import com.unfold.unfoldfit.model.entity.Order;
 import com.unfold.unfoldfit.repository.OrderRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+@Service
 
 public class OrderServiceImpl {
 

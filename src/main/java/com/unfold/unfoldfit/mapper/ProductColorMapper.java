@@ -12,12 +12,12 @@ import java.util.List;
 public interface ProductColorMapper {
 
     @Mapping(source="colorId",target="colorId")
-    @Mapping(source="colorName",target="stockQuantity")
+    @Mapping(source="colorName",target="colorName")
     @Mapping(source="hexCode",target="hexCode")
     ProductColorDto convertToProductColorDto(ProductColor productColor);
 
     @Mapping(source="colorId",target="colorId")
-    @Mapping(source="colorName",target="stockQuantity")
+    @Mapping(source="colorName",target="colorName")
     @Mapping(source="hexCode",target="hexCode")
     ProductColor convertToProductColor(ProductColorDto productColorDto);
 

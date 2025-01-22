@@ -4,8 +4,10 @@ import com.unfold.unfoldfit.mapper.ProductColorMapper;
 import com.unfold.unfoldfit.model.dto.ProductColorDto;
 import com.unfold.unfoldfit.model.entity.ProductColor;
 import com.unfold.unfoldfit.repository.ProductColorRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+@Service
 
 public class ProductColorServiceImpl {
 

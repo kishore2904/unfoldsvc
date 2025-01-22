@@ -19,7 +19,7 @@ public class CartController {
         this.cartServiceImpl = cartServiceImpl;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/cartProducts/{id}")
     public ResponseEntity<List<CartDto>> findCartItemsByUserId(@PathVariable Integer userId){
         return ResponseEntity.ok(cartServiceImpl.getAllCartItemsByUserId(userId));
     }
