@@ -32,6 +32,7 @@ public class CategoriesController {
     }
     @CrossOrigin(origins = "*")
     @PostMapping("/categories")
+    @PreAuthorize("hasRole('Admin')")
     ResponseEntity<Void> saveCategories(@RequestBody CategoryDto categoryDto){
         categoryServiceImpl.createCategories(categoryDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
