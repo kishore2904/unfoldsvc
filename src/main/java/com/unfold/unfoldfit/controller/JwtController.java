@@ -11,14 +11,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = {"http://localhost:4200", "http://unfold.fit"})  // Specific origins allowed
 public class JwtController {
+
     @Autowired
     private JwtService jwtService;
 
     @PostMapping({"/authenticate"})
     public JwtResponse createJwtToken(@RequestBody JwtRequest jwtRequest) throws UsernameNotFoundException {
-       return jwtService.createJwtToken(jwtRequest);
-
+        return jwtService.createJwtToken(jwtRequest);
     }
 }
+

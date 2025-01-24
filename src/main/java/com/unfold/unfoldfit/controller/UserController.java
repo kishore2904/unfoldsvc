@@ -20,25 +20,25 @@ public class UserController {
         this.usersService = usersService;
     }
 
-    //    @PostConstruct
-//    public void initRolesAndUser(){
-//        usersService.initRolesAndUser();
-//    }
-    @CrossOrigin(origins = "*")
+    // Register new user
+    @CrossOrigin(origins = {"http://localhost:4200", "http://unfold.fit"})  // Allow both localhost and production origin
     @PostMapping(Constants.REGISTER_NEW_USER)
     public Users registerNewUser(@RequestBody Users users) {
         return usersService.requestNewUser(users);
     }
 
+    // Admin access (Protected)
     @GetMapping("/forAdmin")
     @PreAuthorize("hasRole('Admin')")
     public String forAdmin() {
         return "For admin";
     }
 
+    // User access (Protected)
     @GetMapping("/forUser")
     @PreAuthorize("hasRole('User')")
     public String forUser() {
         return "For User";
     }
 }
+
