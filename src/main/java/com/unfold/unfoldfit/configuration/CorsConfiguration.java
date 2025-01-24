@@ -14,12 +14,12 @@ public class CorsConfiguration {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")  // Apply to all endpoints
-                        .allowedOrigins("http://localhost:4200", "http://unfold.fit")  // Allow specific origins (localhost for dev, production domain)
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")  // Allow specific HTTP methods
-                        .allowedHeaders("*")  // Allow all headers
-                        .allowCredentials(true)  // Allow credentials (cookies or authentication)
-                        .maxAge(3600);  // Cache preflight response for 1 hour
+                        .allowedOrigins("http://localhost:4200")  // Allow your local frontend
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")  // Allowed HTTP methods
+                        .allowedHeaders("*")  // Allow any header
+                        .allowCredentials(true);  // Allow credentials (cookies or authorization)
             }
         };
     }
 }
+
