@@ -1,6 +1,5 @@
 package com.unfold.unfoldfit.configuration;
 
-
 import com.unfold.unfoldfit.service.impl.JwtService;
 import com.unfold.unfoldfit.utils.JwtUtil;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -59,12 +58,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                     usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
                 }
-            }else{
+            } else {
                 throw new UsernameNotFoundException("User not found");
             }
         }
         filterChain.doFilter(request, response);
-
     }
-
 }

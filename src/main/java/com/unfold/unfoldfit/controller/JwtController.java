@@ -15,18 +15,9 @@ public class JwtController {
     @Autowired
     private JwtService jwtService;
 
-    @PostMapping("/authenticate")
+    @PostMapping(value = "/authenticate")
     public JwtResponse createJwtToken(@RequestBody JwtRequest jwtRequest) throws UsernameNotFoundException {
         return jwtService.createJwtToken(jwtRequest);
-    }
-
-    @RequestMapping(value = "/authenticate", method = RequestMethod.OPTIONS)
-    public ResponseEntity<Void> options() {
-        return ResponseEntity.ok()
-                .header(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "http://localhost:4200")
-                .header(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS, "GET, POST, PUT, DELETE, OPTIONS")
-                .header(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS, "Content-Type, Authorization")
-                .build();
     }
 }
 

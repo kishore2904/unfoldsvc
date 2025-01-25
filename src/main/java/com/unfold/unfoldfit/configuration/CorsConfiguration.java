@@ -13,11 +13,13 @@ public class CorsConfiguration {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
+                System.out.println("****** Starting cors config******");
                 registry.addMapping("/**")  // Apply to all endpoints
-                        .allowedOrigins("http://localhost:4200")  // Allow your local frontend
+                        .allowedOrigins("http://localhost:4200","https://unfold.fit")  // Allow your local frontend
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")  // Allowed HTTP methods
                         .allowedHeaders("*")  // Allow any header
                         .allowCredentials(true);  // Allow credentials (cookies or authorization)
+                System.out.println("****** Ending cors config******");
             }
         };
     }

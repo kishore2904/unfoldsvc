@@ -21,8 +21,7 @@ public class UsersServiceImpl implements UsersService {
     @Autowired
     private UsersRepository usersRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+
 
     @Autowired
     private RoleRepository roleRepository;
@@ -36,7 +35,7 @@ public class UsersServiceImpl implements UsersService {
         Set<Role> roleSet = new HashSet<>();
         roleSet.add(role);
         users.setRoles(roleSet);
-        users.setPassword(getEncodedPassword(users.getPassword()));
+
         return usersRepository.save(users);
     }
 
@@ -51,13 +50,11 @@ public class UsersServiceImpl implements UsersService {
 
         Users adminUser = new Users();
         adminUser.setUserName("admin");
-        adminUser.setPassword(getEncodedPassword("password"));
+
         Set<Role> adminRoles = new HashSet<>();
         adminRoles.add(adminRole);
         adminUser.setRoles(adminRoles);
         usersRepository.save(adminUser);
     }
-    public String getEncodedPassword(String password){
-        return passwordEncoder.encode(password);
-    }
+
 }
